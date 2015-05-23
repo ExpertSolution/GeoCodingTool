@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Geocoding service </title>
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>  <!-- Loading Google Maps API -->
+		<script type="text/javascript" src="javascript/geocoder.js"></script>
+		<script type="text/javascript" src="javascript/events/filereader.js" defer></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+		<script src="http://malsup.github.com/jquery.form.js"></script> 
+		<script type="text/javascript" src="javascript/jquery.js"></script>
+	</head>
+	<body>
+		<nav>
+			<ul>
+			<h3><li><a href="http://www.google.com" title="Menu!">Group 5 Geocoding</a>
+				<ul>
+				<li><a href="http://www.google.com" title="Submenu1"> Submenu1 </a></li>
+				<li><a href="http://www.google.com" title="Submenu2"> Submenu2 </a></li>
+				<li><a href="http://www.google.com" title="Submenu3"> Submenu3 </a></li>
+				</ul> 
+			</li><li><a href="http://www.google.com" title="Menu2"> Menu2 </a></li>
+			</h3>
+			</ul>
+		</nav>																																															
+		<div id="container">
+			<br> <h1> Geocoding </h1> <br>
+			<div id="search" align="center">
+				 <!-- For future development -->
+				 <div class="header"> Enter an address: <a class="clear" onclick="clearAll(); return false;" href> Clear All</a></div>
+					<input id="address" onfocus="if (this.value=='Search') this.value =''" type="text" value="Search"><input id="geocode" title="Geocode an address" type="button" value="Geocode" onclick="codeAddress()">
+				<br>
+				<div class="header"> Batch Geocoding </div>
+					<form id="upload" method="post" action="batch.php" enctype="multipart/form-data">
+						<input type="radio" name="grain" value="exact"> Exact
+						<input type="radio" name="grain" value="street"> Street 
+						<input type="radio" name="grain" value="suburb"> Suburb		
+						<input id="files" type="file" name="file" /> <button title="Cancel loading file" onclick="abortRead();">Cancel</button><input type="submit" value="Geocode" title="Start batch geocoding">
+					</form>
+
+					<div id="progress_bar"><div class="percent">0%</div></div>
+				<div class="header"> Download results </div>
+					<form id="download" method="post" action="callBatch.php" align="right">					
+						<input id="no" type="text" name="number" style="width: 50px;">
+						<input type="submit" value="Download" title="Get your batch results!">
+					</form>
+				<br>
+				<div id="result" class="content"></div>
+				<div id="savedresult" class="content"></div>
+			</div>
+			<div id="map" align="center">
+				<div id="map-canvas"> </div> <br>
+				For a better mapping experience, ensure JavaScript is enabled.
+			</div>
+		</div>
+	</body>
+</html>
+
+<!-- Copyright 2015 Philip Bui --> 
